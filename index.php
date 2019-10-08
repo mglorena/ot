@@ -50,7 +50,7 @@ require ("classes/cot.php");
                 <form id="formSearch" action="index.php" method="post">
 
                     <!--<div class="titlePag">Universidad Nacional de Salta</div>-->
-                    <div class="titleSubPag">Listado de Ofertas Técnologicas de la Universidad</div>
+                    <div class="titleSubPag">Listado de Ofertas Tecnológicas de la Universidad</div>
                     <br/>
 
                     <table cellpadding="0" cellspacing="0" style="width:440px">
