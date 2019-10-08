@@ -7,7 +7,7 @@
  */
 header('Content-Type: text/html; charset=UTF-8');
 header('Content-Disposition", "attachment;filename=myfilename.xls');
-require ("classes/cguia.php");
+require ("classes/cot.php");
 ?>
 
 
@@ -15,7 +15,7 @@ require ("classes/cguia.php");
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Guia de Tel&eacutefonos - Direcci&oacuten General de Obras y Servicios</title>
+        <title>Ofertas Tecnológicas </title>
         <link href="css/style.css" rel="stylesheet" />
         <link href="css/popin.css" rel="stylesheet" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -49,8 +49,8 @@ require ("classes/cguia.php");
 
                 <form id="formSearch" action="index.php" method="post">
 
-                    <div class="titlePag">Universidad Nacional de Salta</div>
-                    <div class="titleSubPag">GUIA TELEFÓNICA INTERNA DEL COMPLEJO GRAL. JOSÉ de SAN MARTIN</div>
+                    <!--<div class="titlePag">Universidad Nacional de Salta</div>-->
+                    <div class="titleSubPag">Listado de Ofertas Técnologicas de la Universidad</div>
                     <br/>
 
                     <table cellpadding="0" cellspacing="0" style="width:440px">
@@ -64,17 +64,17 @@ require ("classes/cguia.php");
                     </table>
 
                     <br/>
-                    <div class="litle-msg">Búsqueda sobre número de interno, responsable, dependencia, departamento y personas usuarias de un interno.</div>
-                    <div  class="textFooter" >
+                    <div class="litle-msg">Búsqueda sobre Unidad Instituto, Servicio, Laboratorio.</div>
+                    <!---<div  class="textFooter" >
 
                         Filtrar por 
                         <?php
                         $result = DropDownDepto();
-                        echo $result;
+                        #echo $result;
                         ?>
                         <a href="#" onclick="PopinOptions(event);"><b>Opciones</b></a>
                         &nbsp;<a href="#" onclick="Imprimir();"><b>Imprimir Vista</b></a> &nbsp; 
-                    </div>
+                    </div>-->
 
 
                     <div id="divResult" style="border:solid 0px #CCC;padding:10px;width:97%">
@@ -99,7 +99,7 @@ require ("classes/cguia.php");
             </div>
         </div>
 
-        <div class="textFooter">Para la corrección de información de la GUIA, por favor comuniquese con la Dirección General de Obras y Servicios <br/> Universidad Nacional de Salta - 2018  </div>
+        <div class="textFooter">Para la corrección de información por favor dirigirse a la Sec. Cooperación Técnica y Relaciones Internacionales <br/> Universidad Nacional de Salta - 2019  </div>
         <br/>
         <div id="divOpciones" style="display:none;width:500px;height: 80px;">
             <div id="divBarraOpt"  style="padding:10px;">
@@ -109,12 +109,14 @@ require ("classes/cguia.php");
 
                 Ocultar/Mostrar columna:
                 <select id="ddlColumns" >
-                    <option value="1">Prefijo</option>
-                    <option value="2">Interno</option>
-                    <option value="3">Usuario</option>
-                    <option value="5">Dependencia</option>
-                    <option value="4">Departamento</option>
-                    <option value="6">Personas</option>
+                    <option value="1">Unidad</option>
+                    <option value="2">Dependencia</option>
+                    <option value="3">Servicio</option>
+                    <option value="5">Responsable</option>
+                    <option value="4">Domicilio</option>
+                    <option value="6">Telefono</option>
+                    <option value="6">Email</option>
+                    <option value="6">Web</option>
                 </select>
 
                 <input type="button" id="buttonHide" onclick="ShowHideColumn();" value="Ocultar/Mostrar">

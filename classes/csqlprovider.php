@@ -1,5 +1,6 @@
- ﻿<?php
-require_once 'cconf.php';
+﻿<?php
+
+require_once 'classes/cconf.php';
 
 class sqlprovider {
 
@@ -20,39 +21,41 @@ class sqlprovider {
     }
 
     function execute() {
+        
         try {
-            //echo "execute".Conf::HOSTNAME."--".Conf::DB_USER."---". Conf::DB_PASS;
-            $this->conexion = mysql_connect(Conf::HOSTNAME, Conf::DB_USER, Conf::DB_PASS);
- // echo "mysql_error<br/>" . mysql_error();
-  //echo $this->conexion;
-            mysql_select_db(Conf::DB_NAME, $this->conexion);
+
+            $this->conexion = mysqli_connect(Conf::DB_SERVER, Conf::DB_USER, Conf::DB_PASS);
+
+           
+            mysqli_select_db($this->conexion, Conf::DB_NAME);
             $this->queries = 0;
             $this->resource = null;
-            // mysql_query("SET NAMES 'utf8'", $this->conexion);
-            if (!($this->resource = mysql_query($this->sql, $this->conexion))) {
-                echo "mysql_error<br/>" . mysql_error();
-                //$error = new Errors();
-                //$error->SendMysqlErrorMessage(mysql_error(), "csqlprovider.php", "execute", $this->sql);
+
+            if (!($this->resource = mysqli_query($this->conexion, $this->sql))) {
+                
                 return null;
             }
             $this->queries++;
             return $this->resource;
         } catch (Exception $ex) {
-            echo "error en la conexion<br/>";
-            //$error = new Errors();
-            //$error->SendMysqlErrorMessage(mysql_error(), "csqlprovider.php", "execute", $this->sql);
+
+            
         }
         return null;
     }
 
     function update() {
         // echo $this->sql;
-        if (!($this->resource = mysql_query($this->sql, $this->conexion))) {
-            $error = new Errors();
-            $error->SendMysqlErrorMessage(mysql_error(), "csqlprovider.php", "update", $this->sql);
+        if (!($this->resource = mysqli_query($this->conexion, $this->sql))) {
+            
+            
             return false;
         }
         return true;
+    }
+
+    function ErrorDetail() {
+        return mysqli_error($this->conexion);
     }
 
     function ListArray() {
@@ -61,7 +64,7 @@ class sqlprovider {
             return null;
         }
         $array = array();
-        while ($row = @mysql_fetch_array($cur)) {
+        while ($row = @mysqli_fetch_array($cur)) {
             $array[] = $row;
         }
         return $array;
@@ -75,7 +78,7 @@ class sqlprovider {
         }
 
         $array = array();
-        while ($row = @mysql_fetch_object($cur)) {
+        while ($row = @mysqli_fetch_object($cur)) {
             array_push($array, $row);
         }
         return $array;
@@ -88,7 +91,7 @@ class sqlprovider {
         }
 
         $array = array();
-        while ($row = @mysql_fetch_row($cur)) {
+        while ($row = @mysqli_fetch_row($cur)) {
             array_push($array, $row);
         }
         return $array;
@@ -103,18 +106,18 @@ class sqlprovider {
     }
 
     function freeResults() {
-        @mysql_free_result($this->resource);
+        @mysqli_free_result($this->resource);
         return true;
     }
 
     function getObject() {
         if ($cur = $this->execute()) {
-            if ($object = mysql_fetch_object($cur)) {
-                @mysql_free_result($cur);
+            if ($object = mysqli_fetch_object($cur)) {
+                @mysqli_free_result($cur);
                 return $object;
             } else {
-                $error = new Errors();
-                $error->SendMysqlErrorMessage(mysql_error(), "csqlprovider.php", "getObject", $this->sql);
+                
+                
                 return null;
             }
         } else {
@@ -123,8 +126,8 @@ class sqlprovider {
     }
 
     function CloseMysql() {
-        @mysql_free_result($this->resource);
-        @mysql_close($this->conexion);
+        @mysqli_free_result($this->resource);
+        @mysqli_close($this->conexion);
     }
 
 }

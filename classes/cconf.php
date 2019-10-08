@@ -2,30 +2,19 @@
 
 class Conf {
    
-    const HOST_URL ='http://localhost/guia/';
+    const HOST_URL ='http://170.210.202.4/ot/';
 
-    const HOST_MAIL = 'obras.unsa.edu.ar';
+    const HOST_MAIL = 'ciunsa.unsa.edu.ar';
     const SMTP_PORT = 25;
     
-    const DB_USER ='guia';
-    const DB_NAME ='guia';
-    const DB_PASS ='obras$gu1@';
+    const DB_SERVER ='localhost';
+    const DB_USER ='root';
+    const DB_NAME ='ot';
+    const DB_PASS ='oysadmin';
 
-    const DIR_HOME = '/var/www/guia';
+    const DIR_HOME = '/var/www/html/ot';
     const HOSTNAME = 'localhost';
-    
-		
-    // CUENTA ENVIO DE ERRORES
-    const ERROR_USER ='errores';
-    const FROM_ERROR = 'errores@obras.unsa.edu.ar';
-    const ERROR_PASS = 'tape';
-
-    // CUENTA ENVIO DE ALERTAS
-    const ALERT_USER ='infotape';
-    const FROM_ALERT = 'infotape@obras.unsa.edu.ar';
-    const ALERT_PASS = 'info';
-    const TO_ALERT = 'mlgarcia@unsa.edu.ar';
-    const TO_ALERTEX = 'mglorena@gmail.com'; /*** para los vehiculos****/
+    	
     
 }
 
