@@ -8,9 +8,9 @@ class Conf {
     const SMTP_PORT = 25;
     
     const DB_SERVER ='localhost';
-    const DB_USER ='ot';
+    const DB_USER ='root';
     const DB_NAME ='ot';
-    const DB_PASS ='otadmin';
+    const DB_PASS ='oysadmin';
 
     const DIR_HOME = '/var/www/html/ot';
     const HOSTNAME = 'localhost';

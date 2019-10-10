@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `ot` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+USE `ot`;
 -- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
 --
 -- Host: localhost    Database: ot
@@ -15,7 +17,6 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-use ot;
 --
 -- Table structure for table `Dependencias`
 --
@@ -97,13 +98,11 @@ CREATE TABLE `OfertasTecno` (
   `UnidadId` int(10) unsigned NOT NULL DEFAULT '0',
   `DependenciaId` int(10) unsigned NOT NULL DEFAULT '0',
   `Servicio` text COLLATE utf8_spanish_ci,
-  `ResponsableId` int(10) unsigned NOT NULL DEFAULT '0',
   `Estado` varchar(10) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'activo',
   PRIMARY KEY (`OfertaId`),
   KEY `UnidadId` (`UnidadId`),
-  KEY `DependenciaId` (`DependenciaId`),
-  KEY `ResponsableId` (`ResponsableId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  KEY `DependenciaId` (`DependenciaId`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,6 +111,7 @@ CREATE TABLE `OfertasTecno` (
 
 LOCK TABLES `OfertasTecno` WRITE;
 /*!40000 ALTER TABLE `OfertasTecno` DISABLE KEYS */;
+INSERT INTO `OfertasTecno` VALUES (1,16,17,'1) EvaluaciГіn Nutricional de cualquier grupo poblacional que lo requiera: niГ±os, escolares, adolescente, adultos, adultos mayores, deportista orientado a su deporte tiendo en cuenta sus necesidades. Se realiza la evaluaciГіn diagnГіstica del estado nutricional del individuo o grupo poblacional y las orientaciones terapГ©uticas nutricionales necesarias; no tratamiento\n2) EvaluaciГіn nutricional desde el punto de vista antropomГ©trico y alimentario.\n3) CapacitaciГіn de recursos humanos en todo lo referente a valoraciГіn nutricional\n4) ValoraciГіn Nutricional mediante mediciones antropomГ©trica y bioimpedancia con equipo InBody 720. Mediante aparatos estandarizados.\n5) Conocer a nivel alimentario cada uno de los nutrientes presentes en la alimentaciГіn de personas para detectar dГ­ficit o excesos.  Mediante un anГЎlisis cuantitativo','active');
 /*!40000 ALTER TABLE `OfertasTecno` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,7 +135,7 @@ CREATE TABLE `Personas` (
   `UserId` int(8) unsigned DEFAULT NULL,
   PRIMARY KEY (`PersonaId`),
   KEY `UserId` (`UserId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +144,7 @@ CREATE TABLE `Personas` (
 
 LOCK TABLES `Personas` WRITE;
 /*!40000 ALTER TABLE `Personas` DISABLE KEYS */;
+INSERT INTO `Personas` VALUES (1,'MarГ­a del Carmen','Mg. Zimmer','Directora','','','','active',0,0),(2,'VerГіnica','Poderti','Secretaria','','','','active',0,0);
 /*!40000 ALTER TABLE `Personas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,12 +242,98 @@ INSERT INTO `Usuarios` VALUES (1,'mlgarcia','79f014c6b47fc7efba7d3246fd2a99cfc92
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'ot'
+-- Table structure for table `transOTResp`
 --
+
+DROP TABLE IF EXISTS `transOTResp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `transOTResp` (
+  `TransId` int(11) NOT NULL AUTO_INCREMENT,
+  `ResponsableId` int(11) NOT NULL,
+  `OfertaTecnoId` int(11) NOT NULL,
+  PRIMARY KEY (`TransId`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transOTResp`
+--
+
+LOCK TABLES `transOTResp` WRITE;
+/*!40000 ALTER TABLE `transOTResp` DISABLE KEYS */;
+INSERT INTO `transOTResp` VALUES (1,1,1),(6,2,1);
+/*!40000 ALTER TABLE `transOTResp` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'ot'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `ot_search` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ot_search`(
+
+IN inputText varchar(300),
+IN inputText2 varchar(300)
+
+)
+BEGIN
+SET NAMES 'utf8';
+
+SELECT 
+  Unidades.Nombre as 'Unidad',
+  Dependencias.Nombre as 'Dependencia',
+  Facultades.Nombre as 'Facultad',
+  OfertasTecno.Servicio as 'Servicio',
+  GROUP_CONCAT(CONCAT(Personas.Cargo,': ',Personas.Apellido,',',Personas.Nombre) SEPARATOR '<br/>')  as 'Responsable'  ,
+  CONCAT(Facultades.Domicilio,' ',
+  Facultades.Telefono,' ',
+  Facultades.Email,' ',
+  Facultades.SitioWeb) as 'Contacto'
+FROM OfertasTecno
+INNER JOIN Unidades ON Unidades.UnidadId = OfertasTecno.UnidadId
+INNER JOIN Dependencias ON Dependencias.DependenciaId = OfertasTecno.DependenciaId
+INNER JOIN transOTResp ON transOTResp.OfertaTecnoId = OfertasTecno.OfertaId
+INNER JOIN Personas ON Personas.PersonaId = transOTResp.ResponsableId
+INNER JOIN Facultades ON Facultades.FacultadId = Dependencias.FacultadId
+
+WHERE OfertasTecno.Estado ='active' AND
+
+  (Unidades.Nombre LIKE CONCAT('%',inputText,'%') or Unidades.Nombre like CONCAT('%',inputText2,'%')
+   or Dependencias.Nombre LIKE CONCAT('%',inputText,'%') or Dependencias.Nombre like CONCAT('%',inputText2,'%')
+   or Facultades.Nombre like CONCAT('%',inputText,'%') or Facultades.Nombre like CONCAT('%',inputText2,'%')
+   or OfertasTecno.Servicio like CONCAT('%',inputText,'%') COLLATE utf8_spanish_ci or OfertasTecno.Servicio like CONCAT('%',inputText2,'%')
+   -- or CONCAT(Personas.Apellido,' , ', Personas.Nombre) like CONCAT('%',inputText,'%') or CONCAT(Personas.Apellido,' , ', Personas.Nombre) like CONCAT('%',inputText2,'%')
+     or Facultades.SitioWeb like CONCAT('%',inputText,'%') or Facultades.SitioWeb like CONCAT('%',inputText2,'%'))
+  
+GROUP BY  
+  Unidades.Nombre,
+  Dependencias.Nombre,
+  Facultades.Nombre,
+  OfertasTecno.Servicio,
+  -- Personas.Apellido,
+  -- Personas.Nombre,
+  Facultades.Domicilio,
+  Facultades.Telefono,
+  Facultades.Email,
+  Facultades.SitioWeb
+
+order by Unidades.Nombre asc, Dependencias.Nombre asc,Facultades.Nombre asc; 
+
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -257,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-07 16:07:56
+-- Dump completed on 2019-10-10 17:41:56
