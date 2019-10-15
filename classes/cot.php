@@ -28,6 +28,7 @@ function Search($inputText, $text) {
     $inputText2 = $inputText;
     if (strpos($inputText, 'á') !== false)
         $inputText2 = str_replace('á', 'a', $inputText);
+    
     if (strpos($inputText, 'é') !== false)
         $inputText2 = str_replace('é', 'e', $inputText);
     if (strpos($inputText, 'í') !== false)
