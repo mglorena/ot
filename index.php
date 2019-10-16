@@ -15,7 +15,7 @@ require ("classes/cot.php");
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
-        <title>Ofertas Tecnológicas </title>
+        <title>Ofertas Tecnológicas - Secretaría de Cooperación Técnica y Relaciones Internacionales</title>
         <link href="css/style.css?v=0.12212211" rel="stylesheet" />
         <link href="css/popin.css" rel="stylesheet" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -49,7 +49,9 @@ require ("classes/cot.php");
 
                 <form id="formSearch" action="index.php" method="post">
 
-                    <!--<div class="titlePag">Universidad Nacional de Salta</div>-->
+                    <div class="titlePag">Secretaría de Cooperación Técnica y Relaciones Internacionales - Universidad Nacional de Salta</div>
+                    <br/>
+
                     <div class="titleSubPag">Listado de Ofertas Tecnológicas de la Universidad</div>
                     <br/>
 
