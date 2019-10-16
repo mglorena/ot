@@ -20,7 +20,7 @@ require ("classes/cot.php");
         <link href="css/popin.css" rel="stylesheet" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"/>
-        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="js/scripts.js?v=0.1"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquerycol.js"></script>
         <script type="text/javascript" src="js/popin.js"></script>
