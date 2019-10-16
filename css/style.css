@@ -11,11 +11,11 @@ body {
 
 input[type=text]
 {
-    border:solid 1px #0774FD;
+    border:solid 1px #5E685E;
 }
 input[type=submit]
 {
-    border:solid 1px #0774FD;
+    border:solid 1px #5E685E;
 }
 table {
 
@@ -137,17 +137,17 @@ tr.listitemuneven td.borderright {
 
 tr.listtitle td {
     background-color: #fff;
-    color: #AAAAAA;
+    color: #5E685E;
 }
 
 tr.listtitle th {
     background-color: #fff;
-    color: #AAAAAA;
+    color: #5E685E;
 }
 
 td.listtitle {
     background-color: #fff;
-    color: #AAAAAA;
+    color: #5E685E;
 }
 
 tr.listitemhighlighted td {

@@ -16,7 +16,7 @@ require ("classes/cot.php");
 <html>
     <head>
         <title>Ofertas Tecnológicas </title>
-        <link href="css/style.css?v=0.1" rel="stylesheet" />
+        <link href="css/style.css?v=0.12212211" rel="stylesheet" />
         <link href="css/popin.css" rel="stylesheet" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1"/>
