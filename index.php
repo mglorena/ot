@@ -52,7 +52,7 @@ require ("classes/cot.php");
                     <div class="titlePag">Secretaría de Cooperación Técnica y Relaciones Internacionales - Universidad Nacional de Salta</div>
                     <br/>
 
-                    <div class="titleSubPag">Listado de Ofertas Tecnológicas de la Universidad</div>
+                    <div class="titleSubPag">Listado de Ofertas Tecnológicas</div>
                     <br/>
 
                     <table cellpadding="0" cellspacing="0" style="width:440px">
