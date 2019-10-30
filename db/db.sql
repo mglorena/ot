@@ -460,6 +460,8 @@ IN inputText2 varchar(300)
 BEGIN
 SET NAMES 'utf8';
 
+SET NAMES 'utf8';
+
 SELECT 
   Unidades.Descripcion as 'Unidad',
   Dependencias.Nombre as 'Dependencia',
