@@ -101,30 +101,31 @@ function SearchOT()
         <div class="container">
             <!-- Inputs de las Categorias -->
             <input name="category-css" id="all" type="radio" checked>
-            <input name="category-css" id="webdesign" type="radio">
-            <input name="category-css" id="webdevelopment" type="radio">
-            <input name="category-css" id="graphicdesign" type="radio">
-            <input name="category-css" id="javascript" type="radio">
+            <input name="category-css" id="tecnicos" type="radio">
+            <input name="category-css" id="consultorias" type="radio">
+            <input name="category-css" id="contratos" type="radio">
+            <input name="category-css" id="intelectual" type="radio">
             
             <!-- Categorias -->
             <ul class="list-category">
                 <li><label for="all">Todos</label></li>
-                <li><label for="webdesign">Tecnologias</label></li>
-                <li><label for="webdevelopment">Salud</label></li>
-                <li><label for="graphicdesign">Energia</label></li>
-                <li><label for="javascript">Cultural</label></li>
+                <li><label for="tecnicos"> Científico-Técnicos</label></li>
+                <li><label for="consultorias">Consultorías y Asesoramiento</label></li>
+                <li><label for="contratos">Acuerdos y Contratos I+D+i</label></li>
+                <li><label for="intelectual">Propiedad Intelectual</label></li>
             </ul>
 
 
             <!-- Lista de Imagenes -->
             <ul class="list-images clearfix">
-                <li class="type-webdesign"><span>Higeniería</span></li>
-                <li class="type-webdevelopment"><span>Nutrición</span></li>
-                <li class="type-javascript"><span>Humanidades</span></li>
-                <li class="type-javascript"><span>Comunicaciones</span></li>
-                <li class="type-webdesign"><span>Forense</span></li>
-                <li class="type-javascript"><span>Arqueología</span></li>
-                <li class="type-webdevelopment"><span>Telefono Salud</span></li>
+                <li class="type-tecnicos"><span>Higeniería</span></li>
+                <li class="type-consultorias"><span>Nutrición</span></li>
+                <li class="type-consultorias"><span>Humanidades</span></li>
+                <li class="type-consultorias"><span>Comunicaciones</span></li>
+                <li class="type-contratos"><span>Forense</span></li>
+                <li class="type-contratos"><span>Arqueología</span></li>
+                <li class="type-consultorias"><span>Telefono Salud</span></li>
+                <li class="type-intelectual"><span>Trans.de material</span></li>
                 
                 
                 
