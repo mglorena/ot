@@ -324,18 +324,19 @@ a {
     top: 40px;
 }
 
-.list-images .type-consultorias {background: #3fab91;}
-.list-images .type-tecnicos {background: #ffbb45;}
-.list-images .type-contratos {background: #db559a;}
-.list-images .type-intelectual {background: #994356;}
+.list-images .type-energia {background: #3fab91;}
+.list-images .type-salud {background: #ffbb45;}
+.list-images .type-ambientales {background: #db559a;}
+.list-images .type-alimentos {background: #994356;}
+
 
 /* Estilos cuando un radio esta seleccionado
  --------------------------------------------------*/
 #all:checked ~ .list-category label[for="all"],
-#tecnicos:checked ~ .list-category label[for="tecnicos"], 
-#contratos:checked ~ .list-category label[for="contratos"], 
-#consultorias:checked ~ .list-category label[for="consultorias"], 
-#type-intelectual:checked ~ .list-category label[for="intelectual"] {
+#energia:checked ~ .list-category label[for="energia"], 
+#ambientales:checked ~ .list-category label[for="ambientales"], 
+#alimentos:checked ~ .list-category label[for="alimentos"], 
+#type-salud:checked ~ .list-category label[for="salud"] {
     background: #1396e1;
     color: #FFF;
 }
@@ -350,10 +351,10 @@ a {
     transform: scale(1);
 }
 
-#tecnicos:checked ~ .list-images .type-tecnicos,
-#contratos:checked ~ .list-images .type-contratos,
-#consultorias:checked ~ .list-images .type-consultorias,
-#intelectual:checked ~ .list-images .type-intelectual {
+#energia:checked ~ .list-images .type-energia,
+#ambientales:checked ~ .list-images .type-ambientales,
+#alimentos:checked ~ .list-images .type-alimentos,
+#salud:checked ~ .list-images .type-salud {
     opacity: 1;
     -webkit-transform: scale(1);
     -ms-transform: scale(1);

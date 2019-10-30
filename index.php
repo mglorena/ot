@@ -101,31 +101,34 @@ function SearchOT()
         <div class="container">
             <!-- Inputs de las Categorias -->
             <input name="category-css" id="all" type="radio" checked>
-            <input name="category-css" id="tecnicos" type="radio">
-            <input name="category-css" id="consultorias" type="radio">
-            <input name="category-css" id="contratos" type="radio">
-            <input name="category-css" id="intelectual" type="radio">
+            <input name="category-css" id="ambientales" type="radio">
+            <input name="category-css" id="energia" type="radio">
+            <input name="category-css" id="salud" type="radio">
+            <input name="category-css" id="alimentos" type="radio">
+
             
             <!-- Categorias -->
             <ul class="list-category">
                 <li><label for="all">Todos</label></li>
-                <li><label for="tecnicos"> Científico-Técnicos</label></li>
-                <li><label for="consultorias">Consultorías y Asesoramiento</label></li>
-                <li><label for="contratos">Acuerdos y Contratos I+D+i</label></li>
-                <li><label for="intelectual">Propiedad Intelectual</label></li>
+                <li><label for="ambientales"> Tecnologías Ambientales</label></li>
+                <li><label for="energia">Energía</label></li>
+                <li><label for="alimentos">Tecnologías alimentarias y recursos </label></li>
+                <li><label for="salud">Biomedicina y Ciencias para la Salud </label></li>
             </ul>
 
 
             <!-- Lista de Imagenes -->
             <ul class="list-images clearfix">
-                <li class="type-tecnicos"><span>Higeniería</span></li>
-                <li class="type-consultorias"><span>Nutrición</span></li>
-                <li class="type-consultorias"><span>Humanidades</span></li>
-                <li class="type-consultorias"><span>Comunicaciones</span></li>
-                <li class="type-contratos"><span>Forense</span></li>
-                <li class="type-contratos"><span>Arqueología</span></li>
-                <li class="type-consultorias"><span>Telefono Salud</span></li>
-                <li class="type-intelectual"><span>Trans.de material</span></li>
+                <li class="type-ambientales"><span>Tecnologías</span></li>
+                <li class="type-energia"><span>Eficiencia   </span></li>
+                <li class="type-alimentos"><span> Programas de I+D</span></li>
+                <li class="type-energia"><span>Radiación Solar</span></li>
+                <li class="type-alimentos"><span>Nutrición</span></li>
+                <li class="type-salud"><span>Patologías</span></li>
+                <li class="type-alimentos"><span>Agroalimentación</span></li>
+                <li class="type-energia"><span>Fotolvoltaica</span></li>
+                
+                
                 
                 
                 
