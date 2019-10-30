@@ -13,9 +13,9 @@ require ("classes/cot.php");
 
 function SearchOT()
 {
-    var $ix = strip_tags($_POST["inputText"]); 
-    var $ix2 = strip_tags($_POST["hdnText"]); 
-    var $btn = strip_tags($_POST["Search"]);
+    $ix = strip_tags($_POST["inputText"]); 
+    $ix2 = strip_tags($_POST["hdnText"]); 
+    $btn = strip_tags($_POST["Search"]);
 
     $inputText = (!isset($ix)?"": $ix);
     $procesar = (!isset($btn)?"":$btn);
