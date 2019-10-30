@@ -1,5 +1,10 @@
+
 CREATE DATABASE  IF NOT EXISTS `ot` ;
 USE `ot`;
+--
+-- Table structure for table `Dependencias`
+--
+
 DROP TABLE IF EXISTS `Dependencias`;
 CREATE TABLE `Dependencias` (
   `DependenciaId` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -16,6 +21,185 @@ CREATE TABLE `Dependencias` (
   KEY `FacultadId` (`FacultadId`),
   KEY `ResponsableId` (`ResponsableId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=132 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Table structure for table `Facultades`
+--
+
+DROP TABLE IF EXISTS `Facultades`;
+CREATE TABLE `Facultades` (
+  `FacultadId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `Sigla` varchar(10) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `Domicilio` varchar(80) COLLATE utf8_spanish_ci DEFAULT '',
+  `Telefono` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
+  `Fax` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
+  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
+  `SitioWeb` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
+  `DecanoId` int(10) DEFAULT '0',
+  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
+  `UniversidadId` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`FacultadId`),
+  KEY `DecanoId` (`DecanoId`),
+  KEY `UniversdiadId` (`UniversidadId`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- Table structure for table `OfertasTecno`
+--
+
+DROP TABLE IF EXISTS `OfertasTecno`;
+CREATE TABLE `OfertasTecno` (
+  `OfertaId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `UnidadId` int(10) unsigned NOT NULL DEFAULT '0',
+  `DependenciaId` int(10) unsigned NOT NULL DEFAULT '0',
+  `Servicio` text COLLATE utf8_spanish_ci,
+  `Estado` varchar(10) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'activo',
+  PRIMARY KEY (`OfertaId`),
+  KEY `UnidadId` (`UnidadId`),
+  KEY `DependenciaId` (`DependenciaId`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Table structure for table `Personas`
+--
+
+DROP TABLE IF EXISTS `Personas`;
+CREATE TABLE `Personas` (
+  `PersonaId` int(6) unsigned NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `Apellido` varchar(80) COLLATE utf8_spanish_ci DEFAULT '',
+  `Cargo` varchar(100) COLLATE utf8_spanish_ci DEFAULT '',
+  `Domicilio` varchar(100) COLLATE utf8_spanish_ci DEFAULT '',
+  `Telefono` varchar(100) COLLATE utf8_spanish_ci DEFAULT '',
+  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
+  `SitioWeb` varchar(150) COLLATE utf8_spanish_ci DEFAULT '',
+  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
+  `DNI` int(8) unsigned NOT NULL DEFAULT '0',
+  `UserId` int(8) unsigned DEFAULT '0',
+  PRIMARY KEY (`PersonaId`),
+  KEY `UserId` (`UserId`)
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+--
+-- Table structure for table `Unidades`
+--
+
+DROP TABLE IF EXISTS `Unidades`;
+CREATE TABLE `Unidades` (
+  `UnidadId` int(10) unsigned NOT NULL DEFAULT '0',
+  `Nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
+  `Descripcion` varchar(150) COLLATE utf8_spanish_ci DEFAULT '',
+  `Domicilio` varchar(250) COLLATE utf8_spanish_ci DEFAULT '',
+  `Telefono` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
+  `Fax` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
+  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
+  `SitioWeb` varchar(150) COLLATE utf8_spanish_ci DEFAULT '',
+  `FacultadId` int(10) DEFAULT '0',
+  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
+  PRIMARY KEY (`UnidadId`),
+  KEY `FacultadId` (`FacultadId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+--
+-- Table structure for table `Universidades`
+--
+
+DROP TABLE IF EXISTS `Universidades`;
+CREATE TABLE `Universidades` (
+  `UniversidadId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(150) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Domicilio` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Telefono` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Fax` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `SitioWeb` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
+  PRIMARY KEY (`UniversidadId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+-- Table structure for table `Usuarios`
+--
+
+DROP TABLE IF EXISTS `Usuarios`;
+CREATE TABLE `Usuarios` (
+  `UserId` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `Password` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
+  `Salt` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `FirstName` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `LastName` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `Email` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
+  `ProfileId` int(10) DEFAULT NULL,
+  `Active` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`UserId`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Table structure for table `transOTResp`
+--
+
+DROP TABLE IF EXISTS `transOTResp`;
+CREATE TABLE `transOTResp` (
+  `TransId` int(11) NOT NULL AUTO_INCREMENT,
+  `ResponsableId` int(11) NOT NULL,
+  `OfertaTecnoId` int(11) NOT NULL,
+  PRIMARY KEY (`TransId`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+DELIMITER ;;
+CREATE PROCEDURE `ot_search`(
+
+IN inputText varchar(300),
+IN inputText2 varchar(300)
+
+)
+BEGIN
+SET NAMES 'utf8';
+
+SELECT 
+  Unidades.Descripcion as 'Unidad',
+  Dependencias.Nombre as 'Dependencia',
+  Facultades.Nombre as 'Facultad',
+  CONCAT(SUBSTR(OfertasTecno.Servicio,1,255),'...') as 'Servicio',
+  GROUP_CONCAT(CONCAT(Personas.Cargo,': ',Personas.Apellido,',',Personas.Nombre) SEPARATOR '<br/>')  as 'Responsable'  ,
+  CONCAT(CONCAT(Unidades.Domicilio,'<br/> ',
+  Unidades.Telefono,'<br/> ',
+  Unidades.Email,'<br/> ', 
+  Unidades.SitioWeb),'<br/>',GROUP_CONCAT(CONCAT(Personas.Email,' ',Personas.SitioWeb,' '))) as 'Contacto'
+FROM OfertasTecno
+INNER JOIN Unidades ON Unidades.UnidadId = OfertasTecno.UnidadId
+LEFT JOIN Dependencias ON Dependencias.DependenciaId = OfertasTecno.DependenciaId
+INNER JOIN transOTResp ON transOTResp.OfertaTecnoId = OfertasTecno.OfertaId
+INNER JOIN Personas ON Personas.PersonaId = transOTResp.ResponsableId
+INNER JOIN Facultades ON Facultades.FacultadId = Dependencias.FacultadId
+
+WHERE 
+
+ OfertasTecno.Estado ='active' AND
+
+   (Unidades.Nombre LIKE CONCAT('%',inputText,'%') or Unidades.Nombre like CONCAT('%',inputText2,'%')
+    or Dependencias.Nombre LIKE CONCAT('%',inputText,'%') or Dependencias.Nombre like CONCAT('%',inputText2,'%')
+    or Facultades.Nombre like CONCAT('%',inputText,'%') or Facultades.Nombre like CONCAT('%',inputText2,'%')
+   or 
+     OfertasTecno.Servicio like CONCAT('%',inputText,'%') COLLATE utf8_spanish_ci or OfertasTecno.Servicio like CONCAT('%',inputText2,'%')
+   or CONCAT(Personas.Apellido,' , ', Personas.Nombre) like CONCAT('%',inputText,'%') or CONCAT(Personas.Apellido,' , ', Personas.Nombre) like CONCAT('%',inputText2,'%')
+     or Unidades.SitioWeb like CONCAT('%',inputText,'%') or Unidades.SitioWeb like CONCAT('%',inputText2,'%'))
+  
+GROUP BY  
+  
+  Unidades.Descripcion,
+  Dependencias.Nombre,
+  Facultades.Nombre,
+  OfertasTecno.Servicio,
+  -- Personas.Apellido,
+  -- Personas.Nombre,
+  Unidades.Domicilio,
+  Unidades.Telefono,
+  Unidades.Email,
+
+  Unidades.SitioWeb
+
+order by Unidades.Descripcion asc, Dependencias.Nombre asc,Facultades.Nombre asc; 
+
+END ;;
+DELIMITER ;
 
 
 -- Dumping data for table `Dependencias`
@@ -110,30 +294,6 @@ INSERT INTO `Dependencias` VALUES
 (131,9,'Grupo de Óptica Láser',"","","","","",0,"activo");
 
 
-
---
--- Table structure for table `Facultades`
---
-
-DROP TABLE IF EXISTS `Facultades`;
-
-CREATE TABLE `Facultades` (
-  `FacultadId` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
-  `Sigla` varchar(10) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
-  `Domicilio` varchar(80) COLLATE utf8_spanish_ci DEFAULT '',
-  `Telefono` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
-  `Fax` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
-  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
-  `SitioWeb` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
-  `DecanoId` int(10) DEFAULT '0',
-  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
-  `UniversidadId` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`FacultadId`),
-  KEY `DecanoId` (`DecanoId`),
-  KEY `UniversdiadId` (`UniversidadId`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
 --
 -- Dumping data for table `Facultades`
 --
@@ -155,25 +315,6 @@ INSERT INTO `Facultades` VALUES
 (13,'Secretaría de Bienestar Universitario','SBU',"Avda. Bolivia 5150","","","","0",0,"activo",0),
 (14,'Rectorado de la Universidad Nacional de Salta','REC',"Avda. Bolivia 5150","","","","0",0,"activo",0),
 (15,'Instituto de Eduación Media','IEM',"","","","","0",0,"activo",0);
-
-
---
--- Table structure for table `OfertasTecno`
---
-
-DROP TABLE IF EXISTS `OfertasTecno`;
-
-CREATE TABLE `OfertasTecno` (
-  `OfertaId` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `UnidadId` int(10) unsigned NOT NULL DEFAULT '0',
-  `DependenciaId` int(10) unsigned NOT NULL DEFAULT '0',
-  `Servicio` text COLLATE utf8_spanish_ci,
-  `Estado` varchar(10) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'activo',
-  PRIMARY KEY (`OfertaId`),
-  KEY `UnidadId` (`UnidadId`),
-  KEY `DependenciaId` (`DependenciaId`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
 
 --
 -- Dumping data for table `OfertasTecno`
@@ -198,27 +339,6 @@ INSERT INTO `OfertasTecno` VALUES
  (16,7,129,"Introducción<br/>\nLos integrantes del grupo se dedican a la evaluación de las instalaciones fotovoltaicas que tienen pocos años de uso, hasta aquellas que superaron holgadamente la década de servicio. <br/>\nCon la inspección de los sistemas se brinda asesoramiento, capacitación, redimensionado y se crea una base de datos para compararlos con futuros peritajes.<br/>\n\nZonas de prestación de servicios <br/>\nLa extensa geografía del norte argentino está formada por una amplia variedad de regiones, como regiones de montañas, valles, selvas, sierras, regiones semiáridas entre otras en donde existen instalaciones fotovoltaicas aisladas (Off-grid) en escuelas, puestos sanitarios, puestos rurales, establecimientos agrícolas solo para mencionar algunos de ellos.<br/>\nEn las ciudades principales hay edificios públicos y privados que poseen sistemas fotovoltaicos.<br/>\n\nEvaluación de sistemas fotovoltaicos<br/>\n\nEvaluación de módulos fotovoltaicos: <br/>\n    1. Orientación.<br/>\n    2. Limpieza.<br/>\n    3. Caja de conexiones, borneras.<br/>\n    4. Cables: estado general, aislación, dimensionamiento correcto.<br/>\n    5. Degradación<br/>\n<br/>\nPara todos los ensayos se traza la curva de I/V de cada módulo utilizando carga electrónica y se las compara con las curvas de la instalación inicial, si las hubiera, o datos del fabricante. <br/>\n\nEvaluación de los controladores de carga: <br/>\n    1. Control de corriente de carga<br/>\n    2. Control de corte de carga por alta.<br/>\n    3. Control de corte de carga por baja<br/>\n<br/>\nEvaluación de las baterías: <br/>\n    1. Densidad.<br/>\n    2. Estado de los bornes de conexión.<br/>\n    3. Ciclo de carga, descarga y retención.<br/>\n    4. Descarga profunda<br/>\n<br/>\nEvaluación de inversores:<br/>\n    1. Frecuencia<br/>\n    2. Tensión<br/>\n    3. Tipo de onda senoidal: cuadrada, semicuadrada, pura.<br/>\n<br/>\nEvaluación y pruebas en laboratorio:<br/>\n\nMódulos fotovoltaicos<br/>\n    1. Pérdidas de adhesión del encapsulante.<br/>\n    2. Degradación en la interconexión celda/módulo.<br/>\n    3. Degradación en los dispositivos semiconductores.<br/>\n    4. Roturas de las celdas.<br/>\n    5. Corrosión.<br/>\n    6. Delaminación.<br/>\n    7. Decoloración del encapsulante.<br/>\n    8. Fallas en las soldaduras.<br/>\n    9. Rotura del vidrio.<br/>\n    10. Puntos calientes<br/>\n<br/>\nAsesoramiento y capacitación.<br/>\nLos integrantes del grupo realizan asesoramiento de diseño, cálculo y usos de sistemas fotovoltaicos.<br/>\nEn sistemas ya instalados se realiza un relevamiento sobre el conocimiento que poseen los usuarios de los sistemas para el dictado de una capacitación del uso adecuado de los mismos.<br/>\nSe dictan talleres de aprendizajes sobre el manejo de la tecnología y las buenas prácticas que se deben aplicar.<br/>\n",'active'),
  (17,7,130,"Breve resumen de las actividades del Grupo:<br/>\nUna parte de la oferta del Grupo de Uso Racional de la Energía, Eficiencia Energética y Desarrollo Socio-Productivo abarca el diseño, desarrollo, monitoreo experimental y simulación computacional de sistemas de generación de energía a baja entalpía orientados a la industria. En esta área, los desarrollos del grupo se han orientado al secado solar de productos agroindustriales en cargas superiores a la tonelada, con relevancia en el secado de pimiento para pimentón, tabaco, aromáticas, cultivos andinos y hortalizas. <br/>\n\nPor otra parte, integrantes del Grupo se abocan a los estudios de eficiencia energética y ahorro energético en industria y al análisis de planificación energética, con enfoque en el acceso a la energía como derecho humano. En esta área se estudia las aplicaciones de las energías renovables como elemento estratégico con potencial para fomentar la equidad intra e intergeneracional. Se trabaja con el Concepto de Sustentabilidad ampliado (sociales, de gobernanza, ambientales, tecnológicos y económicos) y con el Concepto de inclusión social y tecnologías para la inclusión social, realizando análisis socio técnico.<br/>\n\n\nServicios:<br/>\nEl Grupo actividades de asesoramiento y de servicios destinados a organismos públicos y privados, entre los cuales se encuentran:<br/>\n\nDiseño de sistemas de secado solar de alimentos: El secado solar es un método muy adecuado para preservación de cosechas, y obtener producción sustentable, con control de calidad y con valor agregado. La escala de los secadores solares diseñados va desde la decena de kilogramos a varias toneladas. El abanico de posibilidades es amplio: secado de pimiento para pimentón, carne seca, hortalizas, uva, orégano y aromáticas, y productos andinos y regionales (quinoa, papa andina, yacón). El Grupo se especializa en el diseño, el desarrollo y el monitoreo de secadores solares, e híbridos (solares-eléctricos, solares-quemado de gas y solares-quemado de leña).<br/>\n\nDiseño de estufas de curado de tabaco tipo bulk-curing solares – híbridas con uso eficiente de la energía: Uno de los más nuevos desarrollos del Grupo se centra en el análisis energético del proceso de curado de tabaco tipo Virginia en el Valle de Lerma, Salta, Argentina. El análisis de la eficiencia energética del proceso de curado tradicional en estufas de tipo bulk-curing con quemador de gas, ha llevado a identificar los factores sensibles en las distintas etapas de curado, cuantificando las transferencias de calor y el rendimiento del sistema de curado tradicional. Con ello, se ha intervenido sobre el proceso tradicional de curado, proponiendo un sistema híbrido solar – quemado de gas, autónomo, y con aprovechamiento secundario de calor de deshecho que permite disminuir el consumo de gas en hasta un 70% respecto a una estufa tradicional.<br/>\n\nDiseño de sistemas de calentamiento de baja entalpía: Asociado a los servicios anteriores, se encuentra el diseño, construcción y modelización computacional de sistemas de calentadores solares de aire y agua. El grupo posee experiencia en el desarrollo y modelización de calentadores solares de aire planos y de alta eficiencia, como así también en el desarrollo de colectores concentradores. Además, se cuenta con experiencia en el diseño de sistemas de calentamiento de agua, y de provisión de electricidad y agua caliente mediante sistemas híbridos fotovoltaicos térmicos. La aplicación de los sistemas diseñados se centra en el calentamiento de recintos (colectores de aire) para secado solar y calefacción, y en la provisión de agua caliente sanitaria y electricidad (colectores híbridos fotovoltaico-térmicos). <br/>\n\nMedición de parámetros físicos. Control y telemetría aplicado a sistemas industriales. Calibración de sensores de temperatura y humedad: Se desarrollaron sistemas de toma de datos, control y logueo remoto destinado a sistemas solares industriales. Con ello se cuenta con la capacidad de registrar las variables físicas relevantes en un sistema solar, realizar el control de procesos en función de las mediciones realizadas, y registrar y controlar los equipos de manera remota. También se cuenta con un conjunto de termómetros patrones secundarios y de punto triple, que permiten calibrar sensores de temperatura en el rango (-10 °C a 300 °C) y sensores de humedad relativa en rango 0 a 97 %.<br/>\n\nModelización computacional de sistemas de secado solar y colectores solares: El Grupo cuenta con el desarrollo de varios softwares de simulación que permiten el prediseño de sistemas de secado solar de alimentos, con carga desde la decena de kilogramos hasta las toneladas. Además, se desarrollaron programas de simulación y diseño de sistemas de calentadores solares de aire y de agua. De esta manera, se cuenta con herramientas que permiten predecir la temperatura de salida de un conjunto de colectores solares, de aire o de agua.<br/>\n\nEstimación de índices socioeconómicos para el desarrollo de energías renovables: Se estimaron distintos índices utilizados para la evaluación de aspectos poblacionales relativos a la situación de privación relativa, acceso a la energía, carga económica del acceso a la energía con respecto al ingreso total familiar, pobreza energética, vulnerabilidad energética y un índice de desarrollo residencial de la energía solar con una perspectiva basada en la inclusión social. Estos índices han sido estimados y mapeados, mediante el empleo de sistemas de información geográficos, para todo país y al nivel de radio censal. Por otro lado, se ha estimado un indicador de pobreza energética para los aglomerados urbanos de argentina, cubriendo trimestralmente desde el año 2003 a la actualidad. Mediante este indicador se ha evaluado la composición de los hogares en situación de pobreza energética y la intensidad con que esta actúa en los distintos aglomerados urbanos y el país.<br/>\n\nModelado de sistemas sociales:  A partir de la utilización de técnicas y métodos de análisis de grandes bases de datos (Big data) se han definido y validado modelos de vulnerabilidad socio energética. Estos modelos permiten describir y comprender contextualmente la situación de pobreza energética, acceso a las fuentes residenciales de energía y vulnerabilidad socio energética. Como resultado, se han mapeado y caracterizado agrupaciones (clusters) poblacionales de acuerdo a distintos niveles de vulnerabilidad. Asimismo, se ha definido y validado un modelo social, que a partir del ordenamiento natural de los datos, permite caracterizar la situación de pobreza energética en términos de sus diversos aspectos sociales, económicos, de salud, educativos y laborales. <br/>\n\nPlanificación energética: El grupo ha desarrollado herramientas analíticas e informáticas para la implementación sustentable de energía solar, con un enfoque de acceso a la energía como derecho humano. Se cuenta con un modelo conceptual de planificación energética con un pool de indicadores, que permite evaluar exante y expost los impactos sociales, ambientales y económicos de la implementación de energía solar. El modelo conceptual fue aplicado a diversos estudios de casos para evaluar la sustitución de fuentes convencionales por energía solar en el sector industrial y residencial (urbano y rural). Se han desarrollado un conjunto de sistemas de soporte a las decisiones que permiten: 1) mapear indicadores de potencial técnico, económico, ambiental y global de la incorporación de tecnología solar; y 2) identificar áreas prioritarias de intervención para maximizar el bienestar de la población minimizando los costos de inversión y los impactos ambientales negativos. En la actualidad, las herramientas desarrolladas se están integrando en un sistema de soporte a las decisiones que permita modelar y diseñar una ciudad inteligente, basada en la implementación de sistemas solares térmicos y fotovoltaicos. El equipo cuenta con experiencia en la definición y construcción de escenarios prospectivos, en software específico, y el desarrollo de evaluaciones financieras y económicas de proyectos de implementación de energías renovables. La evaluación de la sostenibilidad social de tecnologías solares se aborda a partir del estudio de la percepción social mediante la aplicación de la metodología Q. Para ello, se ha desarrollado una plataforma virtual en base a dicha metodología, que permite el relevamiento y análisis de la percepción social. <br/>\n",'active'),
  (18,7,131,"BREVE RESUMEN DEL GRUPO<br/>\nEl Grupo de Óptica Láser cuenta con gran experiencia en el campo de la metrología óptica, desarrollando e implementando diversas técnicas para ensayos no destructivos. Trabajamos de manera interdisciplinaria con otros grupos de investigación contribuyendo con aplicaciones de variada índole en campos tales como industria, salud, ingeniería, energía y medio ambiente, entre otros.  Nuestro grupo cuenta con tres laboratorios: el laboratorio de Metrología Óptica, el laboratorio de Óptica Biológica y el laboratorio de Caracterización de Partículas.<br/>\n\nSERVICIOS<br/>\n    • Medición de distribución de tamaño de partículas<br/>\nEl análisis de la distribución de tamaños de materiales particulados es crucial en diversas áreas de la investigación y la industria (nanotecnología, geología, mineralogía, química, farmacéutica, microbiología, alimenticia, entre otras). Nuestro laboratorio cuenta con un analizador por difracción láser Horiba LA-950. Empleando el método húmedo, pueden realizarse análisis de muestras con partículas entre 0,01 m y 3mm, dispersadas en agua desionizada o etanol, presentadas en forma de polvo, suspensiones, emulsiones, pastas, geles o cremas. En el corto plazo, se espera brindar el servicio empleando el método seco, en el cual las partículas son dispersadas en una corriente de aire. Complementariamente, se espera ampliar las capacidades del servicio, incorporando técnicas de tamizado (porcentaje en masa) y de análisis automatizado de imágenes de microscopía convencional y holográfica (porcentaje en número).<br/>\n    • Caracterización de microorganismos y microestructuras \nMediante Microscopía Holográfica Digital (MHD) se realiza la caracterización 3D de diversos microorganismos y microestructuras (parásitos, microalgas, bacterias, partículas, cenizas volcánicas) desarrollando y computando descriptores morfológicos tridimensionales. Asimismo, se emplea MHD junto con técnicas de procesamiento digital de imágenes para la detección y/o identificación y/o conteo automático de ciertos organismos y/o partículas.<br/>\n\n    • Desarrollo de dispositivos de visión automática y software asociado\nEl grupo ha desarrollado y transferido un microscopio óptico automatizado para el recuento de parásitos móviles en laboratorio. En particular, este fue aplicado a la detección y conteo del parásito unicelular Trypanosoma cruzi, agente causante de la enfermedad de Chagas, con el propósito de contribuir en investigaciones clínicas sobre esta enfermedad. Sus resultados son más confiables y el proceso es más rápido, comparado con las evaluaciones subjetivas realizadas visualmente por un técnico. <br/>\nActualmente se encuentra en desarrollo un prototipo de microscopio holográfico digital portátil.<br/>\n\n    • Caracterización de sistemas termodinámicos <br/>\nDiferentes métodos (DSPI, Schlieren, PIV, entre otras) se emplean para la visualización de flujos y estudios de transferencia de calor y permiten cuantificar gradientes de temperatura y concentración. Actualmente estamos trabajando en la caracterización de materiales de cambio de fase, con fines de acumulación de energía térmica. Dicho estudio implica tanto la determinación de las propiedades ópticas y térmicas de las sustancias, como la visualización del avance del frente de cambio de fase.<br/>\n\n    • Estudio de procesos biológicos dinámicos <br/>\nMediante técnicas de bio-speckle se realiza el estudio de la evolución de diversos procesos tales como:<br/>\n    • Secado y maduración de productos agrícolas<br/>\n    • Evolución de colonias bacterianas<br/>\n    • Viabilidad de semillas<br/>\n    • Monitoreo in situ del crecimiento poblacional de microalgas criadas en bioreactores bajo condiciones de aireación, iluminación y temperatura controladas.<br/>\n\n    • Mediciones de alta precisión<br/>\nUtilizando distintas técnicas interferométricas (interferometría clásica, holográfica y speckle) se realizan medidas de alta precisión:<br/>\n    • Determinación de propiedades ópticas, mecánicas y reológicas de materiales.<br/>\n    • Estudios de sistemas mecánicos y dinámicos (deformación de sólidos, vibración en placas, etc.).<br/>\n    • Mediciones de índice de refracción a distintas longitudes de onda de sustancias líquidas a diferentes temperaturas utilizando tanto refractómetros comerciales como técnicas desarrolladas ad hoc.<br/>\n    • Desarrollo de metodologías con fines específicos.<br/>\n\n\n",'active');
-
--- Table structure for table `Personas`
---
-
-DROP TABLE IF EXISTS `Personas`;
-
-CREATE TABLE `Personas` (
-  `PersonaId` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(80) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
-  `Apellido` varchar(80) COLLATE utf8_spanish_ci DEFAULT '',
-  `Cargo` varchar(100) COLLATE utf8_spanish_ci DEFAULT '',
-  `Domicilio` varchar(100) COLLATE utf8_spanish_ci DEFAULT '',
-  `Telefono` varchar(100) COLLATE utf8_spanish_ci DEFAULT '',
-  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
-  `SitioWeb` varchar(150) COLLATE utf8_spanish_ci DEFAULT '',
-  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
-  `DNI` int(8) unsigned NOT NULL DEFAULT '0',
-  `UserId` int(8) unsigned DEFAULT '0',
-  PRIMARY KEY (`PersonaId`),
-  KEY `UserId` (`UserId`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- Dumping data for table `Personas`
 --
@@ -250,25 +370,6 @@ INSERT INTO `Personas`
 (22,'Gladis Graciela','Dra. Romero',"Directora"," "," ","romeropelayog@gmail.com"," ","active");
 
 --
--- Table structure for table `Unidades`
---
-
-DROP TABLE IF EXISTS `Unidades`;
-CREATE TABLE `Unidades` (
-  `UnidadId` int(10) unsigned NOT NULL DEFAULT '0',
-  `Nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL DEFAULT '',
-  `Descripcion` varchar(150) COLLATE utf8_spanish_ci DEFAULT '',
-  `Domicilio` varchar(250) COLLATE utf8_spanish_ci DEFAULT '',
-  `Telefono` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
-  `Fax` varchar(30) COLLATE utf8_spanish_ci DEFAULT '',
-  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT '',
-  `SitioWeb` varchar(150) COLLATE utf8_spanish_ci DEFAULT '',
-  `FacultadId` int(10) DEFAULT '0',
-  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
-  PRIMARY KEY (`UnidadId`),
-  KEY `FacultadId` (`FacultadId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
 --
 -- Dumping data for table `Unidades`
 --
@@ -360,49 +461,6 @@ INSERT INTO `Unidades` VALUES (1,"INIQUI","INIQUI(Ing): Instituto de Investigaci
 (84,"LMP","Laboratorio de Microbiología y Parasitología"," Facultad de Ciencias de la Salud. Edificio A. Laboratorio de Microbiología. Av. Bolivia 5150 - (4400) - Salta Capital","(54) (387) 425-8640","-","aleba05@yahoo.com","-",0,"activo"),
 (85,"GN","Grupo Nanomateriales"," "," "," "," "," ",0,"activo");
 
-
---
--- Table structure for table `Universidades`
---
-
-DROP TABLE IF EXISTS `Universidades`;
-
-CREATE TABLE `Universidades` (
-  `UniversidadId` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(150) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Domicilio` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Telefono` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Fax` varchar(30) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Email` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `SitioWeb` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `Estado` varchar(10) COLLATE utf8_spanish_ci DEFAULT 'activo',
-  PRIMARY KEY (`UniversidadId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-
---
--- Dumping data for table `Universidades`
---
-
-
---
--- Table structure for table `Usuarios`
---
-
-DROP TABLE IF EXISTS `Usuarios`;
-
-CREATE TABLE `Usuarios` (
-  `UserId` int(11) NOT NULL AUTO_INCREMENT,
-  `UserName` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `Password` varchar(250) COLLATE utf8_spanish_ci NOT NULL,
-  `Salt` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `FirstName` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `LastName` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `Email` varchar(200) COLLATE utf8_spanish_ci NOT NULL,
-  `ProfileId` int(10) DEFAULT NULL,
-  `Active` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`UserId`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 --
 -- Dumping data for table `Usuarios`
 --
@@ -412,104 +470,9 @@ LOCK TABLES `Usuarios` WRITE;
 INSERT INTO `Usuarios` VALUES (1,'mlgarcia','79f014c6b47fc7efba7d3246fd2a99cfc921f380c38ab769d5df8884f8935c98f110a4e909bbd340fc53c1898f1c69d303a572fc9c2f0fe4c1144f05fcb534f8','d404fcb11ce6dc5b8fa1a4f409ab3dfc','Lorena','Garcia','mlgarcia@unsa.edu.ar',1,'');
 
 UNLOCK TABLES;
-
---
--- Table structure for table `transOTResp`
---
-
-DROP TABLE IF EXISTS `transOTResp`;
-
-
-CREATE TABLE `transOTResp` (
-  `TransId` int(11) NOT NULL AUTO_INCREMENT,
-  `ResponsableId` int(11) NOT NULL,
-  `OfertaTecnoId` int(11) NOT NULL,
-  PRIMARY KEY (`TransId`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
-
---
--- Dumping data for table `transOTResp`
---
-
 LOCK TABLES `transOTResp` WRITE;
 
 INSERT INTO `transOTResp` VALUES (1,1,1),(6,2,1),(7,3,2),(8,4,2),(9,5,3),(10,6,4),(11,7,5),(12,8,5),(13,9,6),(14,10,6),(15,10,7),(16,11,7),(17,12,8),(18,13,9),(19,14,10),(20,15,11),(21,16,12),(22,17,13),(23,18,14),(24,19,15),(25,20,16),(26,21,17),(27,22,18);
 
 UNLOCK TABLES;
 
---
--- Dumping routines for database 'ot'
---
-/*!50003 DROP PROCEDURE IF EXISTS `ot_search` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_spanish_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`ot`@`%` PROCEDURE `ot_search`(
-
-IN inputText varchar(300),
-IN inputText2 varchar(300)
-
-)
-BEGIN
-SET NAMES 'utf8';
-
-SET NAMES 'utf8';
-
-SELECT 
-  Unidades.Descripcion as 'Unidad',
-  Dependencias.Nombre as 'Dependencia',
-  Facultades.Nombre as 'Facultad',
-  CONCAT(SUBSTR(OfertasTecno.Servicio,1,255),'...') as 'Servicio',
-  GROUP_CONCAT(CONCAT(Personas.Cargo,': ',Personas.Apellido,',',Personas.Nombre) SEPARATOR '<br/>')  as 'Responsable'  ,
-  CONCAT(CONCAT(Unidades.Domicilio,'<br/> ',
-  Unidades.Telefono,'<br/> ',
-  Unidades.Email,'<br/> ', 
-  Unidades.SitioWeb),'<br/>',GROUP_CONCAT(CONCAT(Personas.Email,' ',Personas.SitioWeb,' '))) as 'Contacto'
-FROM OfertasTecno
-INNER JOIN Unidades ON Unidades.UnidadId = OfertasTecno.UnidadId
-LEFT JOIN Dependencias ON Dependencias.DependenciaId = OfertasTecno.DependenciaId
-INNER JOIN transOTResp ON transOTResp.OfertaTecnoId = OfertasTecno.OfertaId
-INNER JOIN Personas ON Personas.PersonaId = transOTResp.ResponsableId
-INNER JOIN Facultades ON Facultades.FacultadId = Dependencias.FacultadId
-
-WHERE 
-
- OfertasTecno.Estado ='active' AND
-
-   (Unidades.Nombre LIKE CONCAT('%',inputText,'%') or Unidades.Nombre like CONCAT('%',inputText2,'%')
-    or Dependencias.Nombre LIKE CONCAT('%',inputText,'%') or Dependencias.Nombre like CONCAT('%',inputText2,'%')
-    or Facultades.Nombre like CONCAT('%',inputText,'%') or Facultades.Nombre like CONCAT('%',inputText2,'%')
-   or 
-     OfertasTecno.Servicio like CONCAT('%',inputText,'%') COLLATE utf8_spanish_ci or OfertasTecno.Servicio like CONCAT('%',inputText2,'%')
-   or CONCAT(Personas.Apellido,' , ', Personas.Nombre) like CONCAT('%',inputText,'%') or CONCAT(Personas.Apellido,' , ', Personas.Nombre) like CONCAT('%',inputText2,'%')
-     or Unidades.SitioWeb like CONCAT('%',inputText,'%') or Unidades.SitioWeb like CONCAT('%',inputText2,'%'))
-  
-GROUP BY  
-  
-  Unidades.Descripcion,
-  Dependencias.Nombre,
-  Facultades.Nombre,
-  OfertasTecno.Servicio,
-  -- Personas.Apellido,
-  -- Personas.Nombre,
-  Unidades.Domicilio,
-  Unidades.Telefono,
-  Unidades.Email,
-
-  Unidades.SitioWeb
-
-order by Unidades.Descripcion asc, Dependencias.Nombre asc,Facultades.Nombre asc; 
-
-END ;;
-DELIMITER ;
-
-
-
--- Dump completed on 2019-10-15 14:03:01

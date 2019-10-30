@@ -51,7 +51,7 @@ function Search($inputText, $text) {
     $count = 0;
     $class = 'listitemeven';
     
-    
+    if($result){
     foreach ($result as $ot) {
         if ($count % 2 == 0)
             $class = 'listitemeven';
@@ -68,6 +68,7 @@ function Search($inputText, $text) {
         //$html .= '<td class="noWrap">' . $ot['Web'] . '&nbsp;</td></tr>';
         $count++;
     }
+}
     $html .="</table><script>   
         </script>";
     return $html;
