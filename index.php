@@ -97,7 +97,7 @@ function SearchOT()
            <!-- Contenedor Principal  -->
     <div class="main-wrapper">
         <!-- Titulo -->
-        <h1 class="main-title">Categorias</h1>
+        
 
         <div class="container">
             <!-- Inputs de las Categorias -->
