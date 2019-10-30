@@ -7,7 +7,30 @@
  */
 header('Content-Type: text/html; charset=UTF-8');
 header('Content-Disposition", "attachment;filename=myfilename.xls');
+header( 'X-Frame-Options: SAMEORIGIN' );
 require ("classes/cot.php");
+
+
+function SearchOT()
+{
+    $ix = strip_tags($_POST["inputText"]); 
+    $ix2 = strip_tags($_POST["hdnText"]); 
+    $btn = strip_tags($_POST["Search"]);
+
+    $inputText = (!isset($ix)?"": $ix);
+    $procesar = (!isset($btn)?"":$btn);
+    $textFil = (!isset($ix2)?"":$ix2);
+
+    if (isset($procesar)) {
+       
+       $result = Search($inputText,$textFil);
+        echo $result;
+    }
+}
+
+
+
+
 ?>
 
 
@@ -67,29 +90,12 @@ require ("classes/cot.php");
 
                     <br/>
                     <div class="litle-msg">Búsqueda sobre Unidad Instituto, Servicio, Laboratorio.</div>
-                    <!---<div  class="textFooter" >
-
-                        Filtrar por 
-                        <?php
-                        $result = DropDownDepto();
-                        #echo $result;
-                        ?>
-                        <a href="#" onclick="PopinOptions(event);"><b>Opciones</b></a>
-                        &nbsp;<a href="#" onclick="Imprimir();"><b>Imprimir Vista</b></a> &nbsp; 
-                    </div>-->
-
+     
 
                     <div id="divResult" style="border:solid 0px #CCC;padding:10px;width:97%">
 
                         <?php
-                        $inputText = (!isset($_POST["inputText"])?"":$_POST["inputText"]);
-                        $procesar = (!isset($_POST["Search"])?"":$_POST["Search"]);
-                        $textFil = (!isset($_POST["hdnText"])?"":$_POST["hdnText"]);
-                        
-                        if (isset($procesar)) {
-                            $result = Search($inputText, $textFil);
-                            echo $result;
-                        }
+                             SearchOT();
                         ?>
                     </div>
                     <input type="hidden" id="hdnText" name="hdnText" value="">
