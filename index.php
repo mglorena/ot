@@ -92,6 +92,25 @@ function SearchOT()
                         </tr>
 
                     </table>
+                  <div id="divCat">
+                        <!-- Lista de Imagenes -->
+            <ul class="list-images clearfix">
+                <li class="type-webdesign"><span>Salud</span></li>
+                <li class="type-webdevelopment"><span>Electricidad</span></li>
+                <li class="type-javascript"><span>Cultural</span></li>
+                <li class="type-javascript"><span>Javascript</span></li>
+                <li class="type-webdesign"><span>Diseño web</span></li>
+                <li class="type-webdesign"><span>Diseño web</span></li>
+                <li class="type-javascript"><span>Javascript</span></li>
+                <li class="type-webdevelopment"><span>Desarrollo web</span></li>
+                <li class="type-graphicdesign"><span>Diseño grafico</span></li>
+                <li class="type-graphicdesign"><span>Diseño grafico</span></li>
+                <li class="type-graphicdesign"><span>Diseño grafico</span></li>
+                <li class="type-webdevelopment"><span>Desarrollo web</span></li>
+            </ul>
+
+
+                  </div>
 
                     <br/>
                     <div class="litle-msg">Búsqueda sobre Unidad Instituto, Servicio, Laboratorio.</div>
