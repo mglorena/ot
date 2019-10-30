@@ -97,7 +97,7 @@ function SearchOT()
     <div class="main-wrapper">
         <!-- Titulo -->
         
-aaa
+
         <div class="container">
             <!-- Inputs de las Categorias -->
             <input name="category-css" id="all" type="radio" checked>
