@@ -94,20 +94,45 @@ function SearchOT()
                     </table>
                   <div id="divCat">
                         <!-- Lista de Imagenes -->
-            <ul class="list-images clearfix">
-                <li class="type-webdesign"><span>Salud</span></li>
-                <li class="type-webdevelopment"><span>Electricidad</span></li>
-                <li class="type-javascript"><span>Cultural</span></li>
-                <li class="type-javascript"><span>Javascript</span></li>
-                <li class="type-webdesign"><span>Diseño web</span></li>
-                <li class="type-webdesign"><span>Diseño web</span></li>
-                <li class="type-javascript"><span>Javascript</span></li>
-                <li class="type-webdevelopment"><span>Desarrollo web</span></li>
-                <li class="type-graphicdesign"><span>Diseño grafico</span></li>
-                <li class="type-graphicdesign"><span>Diseño grafico</span></li>
-                <li class="type-graphicdesign"><span>Diseño grafico</span></li>
-                <li class="type-webdevelopment"><span>Desarrollo web</span></li>
+           <!-- Contenedor Principal  -->
+    <div class="main-wrapper">
+        <!-- Titulo -->
+        <h1 class="main-title">Categorias</h1>
+
+        <div class="container">
+            <!-- Inputs de las Categorias -->
+            <input name="category-css" id="all" type="radio" checked>
+            <input name="category-css" id="webdesign" type="radio">
+            <input name="category-css" id="webdevelopment" type="radio">
+            <input name="category-css" id="graphicdesign" type="radio">
+            <input name="category-css" id="javascript" type="radio">
+            
+            <!-- Categorias -->
+            <ul class="list-category">
+                <li><label for="all">Todos</label></li>
+                <li><label for="webdesign">Tecnologias</label></li>
+                <li><label for="webdevelopment">Salud</label></li>
+                <li><label for="graphicdesign">Energia</label></li>
+                <li><label for="javascript">Cultural</label></li>
             </ul>
+
+
+            <!-- Lista de Imagenes -->
+            <ul class="list-images clearfix">
+                <li class="type-webdesign"><span>Higeniería</span></li>
+                <li class="type-webdevelopment"><span>Nutrición</span></li>
+                <li class="type-javascript"><span>Humanidades</span></li>
+                <li class="type-javascript"><span>Comunicaciones</span></li>
+                <li class="type-webdesign"><span>Forense</span></li>
+                <li class="type-javascript"><span>Arqueología</span></li>
+                <li class="type-webdevelopment"><span>Telefono Salud</span></li>
+                
+                
+                
+                
+            </ul>
+        </div>
+    </div>
 
 
                   </div>
