@@ -13,6 +13,10 @@ require ("classes/cot.php");
 
 function SearchOT()
 {
+
+    if (isset($_POST["inputText"])) {
+    
+
     $ix = strip_tags($_POST["inputText"]); 
     $ix2 = strip_tags($_POST["hdnText"]); 
     $btn = strip_tags($_POST["Search"]);
@@ -26,6 +30,7 @@ function SearchOT()
        $result = Search($inputText,$textFil);
         echo $result;
     }
+}
 }
 
 
